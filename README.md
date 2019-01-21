@@ -27,7 +27,7 @@ choco install notepadplusplus
 4. Close command prompt then open a fresh administrator command prompt
 
 5. Create a folder for this example project
-```
+```batch
 cd /
 mkdir code
 mkdir code\pj-demo
@@ -49,7 +49,7 @@ npm install --save-dev jest-puppeteer puppeteer jest
 
 1. From the same command prompt in folder `/code/pj-demo`
 
-```
+```batch
 start notepad++ totaljobs.test.js
 ```
 
@@ -75,7 +75,7 @@ npm init
 test command is `jest`, accept other defaults
 
 package.json will have content like this
-```
+```javascript
 {
   "name": "pj-demo",
   "version": "1.0.0",
@@ -110,7 +110,7 @@ Before the `"scripts"` line, insert:
 ```
 
 package.json after edit example
-```
+```json
 {
   "name": "pj-demo",
   "version": "1.0.0",
