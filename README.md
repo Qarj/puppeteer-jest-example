@@ -1,10 +1,10 @@
-# work in progress - this is not ready
-
-
 # puppeteer-jest-example
 
-Installing and using Puppeteer and Jest with a simple example starting from scratch.
+Installing and using Puppeteer and Jest with a simple example.
 
+The instructions here will work on a newly built desktop without node, jest or puppeteer already installed.
+
+Time needed: 5 minutes max
 
 
 ## Windows Install
@@ -19,23 +19,38 @@ Installing and using Puppeteer and Jest with a simple example starting from scra
 cinst nodejs
 ```
 
-3. Close command prompt then open a fresh administrator command prompt
+3. Install notepad++
+```
+choco install notepadplusplus
+```
 
-4. Install Puppeteer
+4. Close command prompt then open a fresh administrator command prompt
+
+5. Create a folder for this example project
+```
+cd /
+mkdir code
+mkdir code\pj-demo
+cd code/pj-demo
+```
+
+6. Check node and npm versions
 ```
 node -v
 npm -v
-npm install puppeteer
 ```
 
-4. Change to project dir, then Install Jest
+7. Change to project dir, then Install Jest
 ```
-npm install --save-dev jest-puppeteer jest
+npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
 ## Create a test
+
+1. From the same command prompt in folder `code/pj-demo`
+
 ```
-subl totaljobs.test.js
+start notepad++ totaljobs.test.js
 ```
 
 Copy-paste and save:
@@ -51,16 +66,51 @@ describe('Totaljobs', () => {
 });
 ```
 
+2. Create a package.json file
+
 ```
 npm init
 ```
 
-package.json
+test command is `jest`, accept other defaults
+
+package.json will have content like this
 ```
 {
-  "name": "jtest",
+  "name": "pj-demo",
   "version": "1.0.0",
-  "description": "Jest test",
+  "description": "puppeteer jest example",
+  "main": "totaljobs.test.js",
+  "dependencies": {
+    "jest": "^23.6.0",
+    "jest-puppeteer": "^3.8.0",
+    "puppeteer": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Qarj",
+  "license": "ISC"
+}
+
+```
+
+3. Modify package.json
+
+Before the `"scripts"` line, insert:
+```
+  "jest": {
+        "preset": "jest-puppeteer"
+  },
+```
+
+package.json after edit example
+```
+{
+  "name": "pj-demo",
+  "version": "1.0.0",
+  "description": "puppeteer jest example",
   "main": "totaljobs.test.js",
   "dependencies": {
     "jest": "^23.6.0",
@@ -74,14 +124,36 @@ package.json
   "scripts": {
     "test": "jest"
   },
-  "author": "",
+  "author": "Qarj",
   "license": "ISC"
 }
-
 ```
 
-## Run a test
+
+## Run the example test
+
+1. From the same command prompt in folder `code/pj-demo`
+
 ```
 npm run test
 ```
 
+Example output
+```
+C:\code\pj-demo>npm run test
+
+> pj-demo@1.0.0 test C:\code\pj-demo
+> jest
+
+ PASS  ./totaljobs.test.js (5.824s)
+  Totaljobs
+    √ should display "job ads" somewhere on the page (24ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        5.926s
+Ran all test suites.
+
+C:\code\pj-demo>
+```
