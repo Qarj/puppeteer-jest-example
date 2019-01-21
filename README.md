@@ -10,17 +10,17 @@ Time needed: 5 minutes max
 ## Windows Install
 
 1. Open up an administrator command prompt and install Chocolatey
-```
+```batch
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ```
 
 2. Install node.js
-```
+```batch
 choco install nodejs
 ```
 
 3. Install notepad++
-```
+```batch
 choco install notepadplusplus
 ```
 
@@ -35,13 +35,13 @@ cd /code/pj-demo
 ```
 
 6. Check node and npm versions
-```
+```batch
 node -v
 npm -v
 ```
 
-7. Install Jest and Putppeteer
-```
+7. Install Jest and Puppeteer
+```batch
 npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
@@ -68,7 +68,7 @@ describe('Totaljobs', () => {
 
 2. Create a package.json file
 
-```
+```batch
 npm init
 ```
 
@@ -98,19 +98,19 @@ package.json will have content like this
 
 3. Modify package.json
 
-```
+```batch
 start notepad++ package.json
 ```
 
 Before the `"scripts"` line, insert:
-```
+```javascript
   "jest": {
         "preset": "jest-puppeteer"
   },
 ```
 
 package.json after edit example
-```json
+```javascript
 {
   "name": "pj-demo",
   "version": "1.0.0",
@@ -138,7 +138,7 @@ package.json after edit example
 
 1. From the same command prompt in folder `/code/pj-demo`
 
-```
+```batch
 npm run test
 ```
 
