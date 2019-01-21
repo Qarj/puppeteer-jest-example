@@ -40,7 +40,7 @@ node -v
 npm -v
 ```
 
-7. Change to project dir, then Install Jest
+7. Install Jest and Putppeteer
 ```
 npm install --save-dev jest-puppeteer puppeteer jest
 ```
@@ -97,6 +97,10 @@ package.json will have content like this
 ```
 
 3. Modify package.json
+
+```
+start notepad++ package.json
+```
 
 Before the `"scripts"` line, insert:
 ```
@@ -157,3 +161,5 @@ Ran all test suites.
 
 C:\code\pj-demo>
 ```
+
+Due to short default timeouts, it might not pass until the second time your run it.
