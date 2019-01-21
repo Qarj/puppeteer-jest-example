@@ -16,7 +16,7 @@ Time needed: 5 minutes max
 
 2. Install node.js
 ```
-cinst nodejs
+choco install nodejs
 ```
 
 3. Install notepad++
@@ -31,7 +31,7 @@ choco install notepadplusplus
 cd /
 mkdir code
 mkdir code\pj-demo
-cd code/pj-demo
+cd /code/pj-demo
 ```
 
 6. Check node and npm versions
@@ -47,7 +47,7 @@ npm install --save-dev jest-puppeteer puppeteer jest
 
 ## Create a test
 
-1. From the same command prompt in folder `code/pj-demo`
+1. From the same command prompt in folder `/code/pj-demo`
 
 ```
 start notepad++ totaljobs.test.js
@@ -136,7 +136,7 @@ package.json after edit example
 
 ## Run the example test
 
-1. From the same command prompt in folder `code/pj-demo`
+1. From the same command prompt in folder `/code/pj-demo`
 
 ```
 npm run test
@@ -162,4 +162,4 @@ Ran all test suites.
 C:\code\pj-demo>
 ```
 
-Due to short default timeouts, it might not pass until the second time your run it.
+Due to short default time outs, it might not pass until the second time your run it.
