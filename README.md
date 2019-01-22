@@ -163,3 +163,70 @@ C:\code\pj-demo>
 ```
 
 Due to short default time outs, it might not pass until the second time your run it.
+
+
+## Turn off headless mode
+
+Turning off headless tends to make the tests more stable.
+
+```
+start notepad++ jest-puppeteer.config.js
+```
+
+Copy paste
+```
+module.exports = {
+  launch: {
+    dumpio: true,
+    headless: process.env.HEADLESS === 'false',
+  },
+  browserContext: 'default',
+}
+```
+
+## Write a test to fill a form and submit
+
+```
+start notepad++ search.test.js
+```
+
+```javascript
+// search.test.js
+
+describe('Search', () => {
+	beforeAll(async () => {
+		await page.goto('https://www.totaljobs.com');
+	});
+
+	it('should display "job ads" somewhere on the page', async () => {
+		await expect(page).toMatch('job ads');
+	});
+
+	it('should fill out the search form', async () => {
+        await expect(page).toFillForm('form[action="/onsitesearch"]', {
+          Keywords: 'Automation Test Engineer',
+          LTxt: 'London',
+        });
+	});
+
+	it('should submit the search', async () => {
+        await expect(page).toClick('input[type="submit"]');
+    });
+
+	it('should then display the search results', async () => {
+       await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+       await expect(page).toMatch('Explore results');
+    });
+
+});
+
+```
+
+```
+npm run test Search
+```
+
+
+# References
+
+https://github.com/smooth-code/jest-puppeteer
