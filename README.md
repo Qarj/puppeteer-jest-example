@@ -2,12 +2,13 @@
 
 Installing and using Puppeteer and Jest with a simple example.
 
-The instructions here will work on a newly built desktop without node, jest or puppeteer already installed.
-
-Time needed: 5 minutes max
-
 
 ## Windows Install
+
+These instructions will work on a brand new OS install.
+
+**Time needed:** __10 minutes max__
+
 
 1. Open up an administrator command prompt and install Chocolatey
 ```batch
@@ -19,7 +20,7 @@ Time needed: 5 minutes max
 choco install nodejs
 ```
 
-3. Install notepad++
+3. Install Notepad++
 ```batch
 choco install notepadplusplus
 ```
@@ -53,8 +54,10 @@ npm install --save-dev jest-puppeteer puppeteer jest
 start notepad++ totaljobs.test.js
 ```
 
-Copy-paste and save:
+Copy-paste then save
 ```javascript
+// totaljobs.test.js
+
 describe('Totaljobs', () => {
     beforeAll(async () => {
         await page.goto('https://www.totaljobs.com');
@@ -133,6 +136,8 @@ package.json after edit example
 }
 ```
 
+Alternatively, you can just create `package.json` as above without going through the `npm init` process.
+
 
 ## Run the example test
 
@@ -161,12 +166,14 @@ Ran all test suites.
 C:\code\pj-demo>
 ```
 
-Due to short default time outs, it might not pass until the second time your run it.
+Due to short default time outs, you might need to run a few times before you see it pass.
+
+The next example increases the time outs.
 
 
 ## Turn off headless mode
 
-Turning off headless tends to make the tests more stable.
+Turning off headless tends to make the tests more stable, and helps debugging.
 
 ```
 start notepad++ jest-puppeteer.config.js
@@ -182,6 +189,7 @@ module.exports = {
   browserContext: 'default',
 }
 ```
+
 
 ## Write a test to fill a form and submit
 
