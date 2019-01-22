@@ -7,7 +7,7 @@ Installing and using Puppeteer and Jest with a simple example.
 
 These instructions will work on a brand new OS install.
 
-**Time needed:** __10 minutes max__
+**Time needed:** *10 minutes max*
 
 
 1. Open up an administrator command prompt and install Chocolatey
