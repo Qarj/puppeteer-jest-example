@@ -198,7 +198,7 @@ describe('Search', () => {
 
     beforeAll(async () => {
         await page.setViewport({ width: 1366, height: 820});
-        await page.goto('https://www.totaljobs.com');
+        await page.goto('https://www.totaljobs.com', { waitUntil: 'networkidle2' });
     });
 
     it('should display "job ads" somewhere on the page', async () => {
@@ -227,6 +227,10 @@ describe('Search', () => {
 ```
 npm run test Search
 ```
+
+`{ waitUntil: 'networkidle2' }` waits until there are no more than 2 network connections for 500ms.
+This setting is useful to keep the test moving along when waiting for slow responding
+third party content.
 
 
 # References
