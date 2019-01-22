@@ -192,13 +192,17 @@ start notepad++ search.test.js
 ```javascript
 // search.test.js
 
+jest.setTimeout(45000);
+
 describe('Search', () => {
+
     beforeAll(async () => {
+        await page.setViewport({ width: 1366, height: 820});
         await page.goto('https://www.totaljobs.com');
     });
 
     it('should display "job ads" somewhere on the page', async () => {
-        await expect(page).toMatch('job ads');
+        await expect(page).toMatch('job ads', {timeout: 8000} );
     });
 
     it('should fill out the search form', async () => {
@@ -228,3 +232,5 @@ npm run test Search
 # References
 
 https://github.com/smooth-code/jest-puppeteer
+https://dev.to/aalises/dealing-with-asynchrony-when-writing-end-to-end-tests-with-puppeteer--jest-n37
+https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagewaitforfunctionpagefunction-options-args
