@@ -197,7 +197,7 @@ jest.setTimeout(45000);
 describe('Search', () => {
 
     beforeAll(async () => {
-        await page.setViewport({ width: 1366, height: 820});
+        await page.setViewport({ width: 1266, height: 1000});
         await page.goto('https://www.totaljobs.com', { waitUntil: 'networkidle2' });
     });
 
