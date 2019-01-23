@@ -258,7 +258,7 @@ new sort results loaded.
 All this is done without any unconditional waits.
 
 ```
-start notepad++ search.test.js
+start notepad++ advanced.test.js
 ```
 
 ```javascript
