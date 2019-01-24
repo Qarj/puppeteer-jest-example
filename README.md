@@ -328,11 +328,12 @@ describe('Advanced', () => {
 
         await page.waitForSelector('a[href*="Sort=2"]');
         await expect(page).toClick('a[href*="Sort=2"]', { waitUntil: 'networkidle2' });
+        await page.waitForFunction('document.querySelector(\'button[data-toggle="dropdown"]\') != null');
+        await page.waitForFunction('document.querySelector(\'button[data-toggle="dropdown"]\').getAttribute(\'aria-expanded\') === "false"');
         await page.screenshot({path: 'sorted-by-date.png'});
     });
 
-});
-```
+});```
 
 ```
 npm run test advanced
