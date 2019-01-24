@@ -2,6 +2,7 @@
 
 Installing and using Puppeteer and Jest with a simple example.
 
+(Ubuntu install instructions at the bottom.)
 
 ## Windows Install
 
@@ -20,9 +21,9 @@ These instructions will work on a brand new OS install.
 choco install nodejs
 ```
 
-3. Install Notepad++
+3. Install Visual Studio Code
 ```batch
-choco install notepadplusplus
+choco install vscode
 ```
 
 4. Close command prompt then open a fresh administrator command prompt
@@ -45,12 +46,12 @@ npm -v
 npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
-## Create a test
+## After Install, Create a test
 
-1. From the same command prompt in folder `/code/pj-demo`
+1. From the same command terminal in folder `code/pj-demo`
 
 ```batch
-start notepad++ totaljobs.test.js
+code totaljobs.test.js
 ```
 
 Copy-paste then save
@@ -101,7 +102,7 @@ package.json will have content like this
 3. Modify package.json
 
 ```batch
-start notepad++ package.json
+code package.json
 ```
 
 Before the `"scripts"` line, insert:
@@ -140,7 +141,7 @@ Alternatively, you can just create `package.json` as above without going through
 
 ## Run the example test
 
-From the same command prompt in folder `/code/pj-demo`
+From the same command terminal in folder `code/pj-demo`
 ```batch
 npm run test
 ```
@@ -175,7 +176,7 @@ The next example increases the time outs.
 Turning off headless tends to make the tests more stable, and helps debugging.
 
 ```
-start notepad++ jest-puppeteer.config.js
+code jest-puppeteer.config.js
 ```
 
 Copy paste
@@ -194,7 +195,7 @@ module.exports = {
 ## Write a test to fill a form and submit
 
 ```
-start notepad++ search.test.js
+code search.test.js
 ```
 
 ```javascript
@@ -258,7 +259,7 @@ new sort results loaded.
 All this is done without any unconditional waits.
 
 ```
-start notepad++ advanced.test.js
+code advanced.test.js
 ```
 
 ```javascript
@@ -339,6 +340,51 @@ describe('Advanced', () => {
 ```
 npm run test advanced
 ```
+
+
+## Ubuntu install
+
+```
+sudo apt install curl
+```
+
+```
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+Create a folder for this example project
+```batch
+mkdir ~/code
+mkdir ~/code/pj-demo
+cd ~/code/pj-demo
+```
+
+Check node and npm versions
+```batch
+node -v
+npm -v
+```
+
+Install Jest and Puppeteer
+```batch
+npm install --save-dev jest-puppeteer puppeteer jest
+```
+
+### Visual Studio Code
+
+```
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > ~/microsoft.gpg
+sudo install -o root -g root -m 644 ~/microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+```
+
+```
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install code
+```
+
 
 
 # References
