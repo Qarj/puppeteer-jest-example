@@ -29,9 +29,8 @@ choco install notepadplusplus
 
 5. Create a folder for this example project
 ```batch
-cd /
-mkdir code
-mkdir code\pj-demo
+mkdir \code
+mkdir \code\pj-demo
 cd /code/pj-demo
 ```
 
@@ -185,6 +184,7 @@ module.exports = {
   launch: {
     dumpio: true,
     headless: process.env.HEADLESS === 'false',
+    args: [`--window-size=1266,1000`],
   },
   browserContext: 'default',
 }
