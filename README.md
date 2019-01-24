@@ -333,7 +333,8 @@ describe('Advanced', () => {
         await page.screenshot({path: 'sorted-by-date.png'});
     });
 
-});```
+});
+```
 
 ```
 npm run test advanced
