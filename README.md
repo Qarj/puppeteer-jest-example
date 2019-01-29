@@ -4,7 +4,7 @@ Installing and using Puppeteer and Jest with a simple example.
 
 (Ubuntu install instructions at the bottom.)
 
-## Windows Install
+## Windows base setup - node, npm and vscode
 
 These instructions will work on a brand new OS install.
 
@@ -28,7 +28,7 @@ choco install vscode
 
 4. Close command prompt then open a fresh administrator command prompt
 
-5. Create a folder for this example project
+5. Create a folder for this example project, and make it the current directory
 ```batch
 mkdir \code
 mkdir \code\pj-demo
@@ -41,14 +41,84 @@ node -v
 npm -v
 ```
 
-7. Install Jest and Puppeteer
+
+## Setup a node tests project
+
+From the same command terminal in folder `code/pj-demo`, create a `package.json` file
+
 ```batch
-npm install --save-dev jest-puppeteer puppeteer jest
+npm init
 ```
 
-## After Install, Create a test
+`test` command is `jest`, you can accept the other defaults or add some info
 
-1. From the same command terminal in folder `code/pj-demo`
+`package.json` will have content like this
+```javascript
+{
+  "name": "pj-demo",
+  "version": "1.0.0",
+  "description": "puppeteer jest example",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Qarj",
+  "license": "ISC"
+}
+```
+
+2. Install Jest and Puppeteer
+```batch
+npm install --save-dev jest-puppeteer puppeteer expect-puppeteer jest 
+```
+
+`--save-dev` will update your `package.json` to indicate that these packages are development dependencies.
+
+3. Modify `package.json`, some additional manual set-up is required
+
+```batch
+code package.json
+```
+
+Before the `"scripts"` line, insert:
+```javascript
+  "jest": {
+    "preset": "jest-puppeteer",
+    "setupFilesAfterEnv": ["expect-puppeteer"]
+  },
+```
+
+package.json after edit will be similar to this
+```javascript
+{
+  "name": "pj-demo",
+  "version": "1.0.0",
+  "description": "puppeteer jest example",
+  "main": "index.js",
+  "jest": {
+    "preset": "jest-puppeteer",
+    "setupFilesAfterEnv": ["expect-puppeteer"]
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Qarj",
+  "license": "ISC",
+  "devDependencies": {
+    "expect-puppeteer": "^3.5.1",
+    "jest": "^24.0.0",
+    "jest-puppeteer": "^3.9.0",
+    "puppeteer": "^1.11.0"
+  }
+}
+```
+
+_Note: you can just create `package.json` as above without going through the `npm init` process._
+
+
+## Create a simple test
+
+From the same command terminal in folder `code/pj-demo`
 
 ```batch
 code totaljobs.test.js
@@ -57,6 +127,8 @@ code totaljobs.test.js
 Copy-paste then save
 ```javascript
 // totaljobs.test.js
+
+jest.setTimeout(45000);
 
 describe('Totaljobs', () => {
     beforeAll(async () => {
@@ -69,77 +141,11 @@ describe('Totaljobs', () => {
 });
 ```
 
-2. Create a package.json file
-
-```batch
-npm init
-```
-
-test command is `jest`, accept other defaults
-
-package.json will have content like this
-```javascript
-{
-  "name": "pj-demo",
-  "version": "1.0.0",
-  "description": "puppeteer jest example",
-  "main": "totaljobs.test.js",
-  "dependencies": {
-    "jest": "^23.6.0",
-    "jest-puppeteer": "^3.8.0",
-    "puppeteer": "^1.11.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "jest"
-  },
-  "author": "Qarj",
-  "license": "ISC"
-}
-
-```
-
-3. Modify package.json
-
-```batch
-code package.json
-```
-
-Before the `"scripts"` line, insert:
-```javascript
-  "jest": {
-        "preset": "jest-puppeteer"
-  },
-```
-
-package.json after edit example
-```javascript
-{
-  "name": "pj-demo",
-  "version": "1.0.0",
-  "description": "puppeteer jest example",
-  "main": "totaljobs.test.js",
-  "dependencies": {
-    "jest": "^23.6.0",
-    "jest-puppeteer": "^3.8.0",
-    "puppeteer": "^1.11.0"
-  },
-  "devDependencies": {},
-  "jest": {
-        "preset": "jest-puppeteer"
-  },
-  "scripts": {
-    "test": "jest"
-  },
-  "author": "Qarj",
-  "license": "ISC"
-}
-```
-
-Alternatively, you can just create `package.json` as above without going through the `npm init` process.
+The Jest timeout defaults to 5000 ms which might be fine for unit style tests, but is too
+low for web testing where there are third party dependencies and banner ads, so we raise it.
 
 
-## Run the example test
+## Run the simple test
 
 From the same command terminal in folder `code/pj-demo`
 ```batch
@@ -166,10 +172,6 @@ Ran all test suites.
 C:\code\pj-demo>
 ```
 
-Due to short default time outs, you might need to run a few times before you see it pass.
-
-The next example increases the time outs.
-
 
 ## Turn off headless mode
 
@@ -191,8 +193,13 @@ module.exports = {
 }
 ```
 
+You will see Chromium appear when you run the test this time
+```batch
+npm run test
+```
 
-## Write a test to fill a form and submit
+
+## Write another test to fill a form and submit
 
 ```
 code search.test.js
@@ -240,6 +247,8 @@ npm run test search
 `{ waitUntil: 'networkidle2' }` waits until there are no more than 2 network connections for 500ms.
 This setting is useful to keep the test moving along when waiting for slow responding
 third party content.
+
+Note also we set the view port at the start of the test to match the window size.
 
 
 ## Write a test to submit an advanced search and sort the results
@@ -342,7 +351,7 @@ npm run test advanced
 ```
 
 
-## Ubuntu install
+## Ubuntu base setup - node, npm and vscode
 
 ```
 sudo apt install curl
@@ -353,7 +362,7 @@ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Create a folder for this example project
+Create a folder for this example project, and make it the current directory
 ```batch
 mkdir ~/code
 mkdir ~/code/pj-demo
@@ -366,25 +375,16 @@ node -v
 npm -v
 ```
 
-Install Jest and Puppeteer
-```batch
-npm install --save-dev jest-puppeteer puppeteer jest
-```
-
-### Visual Studio Code
-
+Install Visual Studio Code
 ```
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > ~/microsoft.gpg
 sudo install -o root -g root -m 644 ~/microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-```
 
-```
 sudo apt-get install apt-transport-https
 sudo apt-get update
 sudo apt-get install code
 ```
-
 
 
 # References
