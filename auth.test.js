@@ -35,7 +35,8 @@ describe("Search", () => {
         await Promise.all([page.click('input[id="btnLogin"]'), page.waitForNavigation()]);
 
         await page.goto(membersAreaUrl);
-        await expect(page).toMatch("Here is your job search at a glance", { timeout: 8000 });
+
+        await page.waitForFunction('document.querySelector("body").innerText.includes("Here is your job search at a glance")');
 
         // close session for next run
         await page.close();
