@@ -1,0 +1,34 @@
+{
+  "name": "puppeteer-jest-example",
+  "version": "1.0.0",
+  "description": "puppeteer jest example",
+  "main": "index.js",
+  "jest": {
+    "preset": "jest-puppeteer",
+    "setupFilesAfterEnv": [
+      "expect-puppeteer"
+    ]
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qarj/puppeteer-jest-example.git"
+  },
+  "keywords": [
+    "puppeteer"
+  ],
+  "author": "Qarj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qarj/puppeteer-jest-example/issues"
+  },
+  "homepage": "https://github.com/Qarj/puppeteer-jest-example#readme",
+  "devDependencies": {
+    "expect-puppeteer": "^6.1.0",
+    "jest": "^27.5.1",
+    "jest-puppeteer": "^6.1.0",
+    "puppeteer": "^13.5.1"
+  }
+}
