@@ -2,11 +2,11 @@
 
 jest.setTimeout(45000);
 
-describe("Search", () => {
+describe("Auth", () => {
     it("should enter login details", async () => {
         // launch browser for LHCI
         const page = await browser.newPage();
-        await page.setUserAgent("WebInject and Selenium");
+        await page.setUserAgent("Supertest and Cypress");
         await page.setViewport({ width: 1920, height: 1080 });
         const baseurl = "https://www.totaljobs.com";
         const membersAreaUrl = `${baseurl}/membersarea`;
