@@ -329,7 +329,8 @@ npm run test advanced
 Also
 
 ```sh
-npm run test auth
+npm run test authtj
+npm run test authde
 ```
 
 # References
